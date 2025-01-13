@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Chai
+{% endblock %}
+
+
+{% block content %}
+<h1 class="text-white text-4xl font-bold p-9">All Types Of Chai Available!</h1>
+
+<div class='text-white text-center grid grid-cols-3 gap-4 p-4'>
+{% for chai in chais %}
+    <div class = "chai-item bg-blue-800 m-6 p-4 rounded-lg shadow-lg hover:shadow-xl transition 
+    duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+        <img class="" src="{{chai.image.url}}" alt="{{ chai.name }}">
+        <p>Price: ₹{{ chai.price }}/-only</p>
+        <h3 class="font-bold text-2xl">{{ chai.name|title }}</h3>
+    <a href="{% url 'chai_detail' chai.id %}">
+        <button type="button" 
+            class = "inline-flex items-center px-4 py-2 w-[100%] justify-center bg-blue-500 border border-transparent 
+            rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-600 
+            active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue 
+            disabled:opacity-25 transition ease-in-out duration-150">
+            {{chai.get_type_display}}-Tea
+        </button>
+    </a>
+    </div>
+{% endfor %}
+</div>
+
+<a href="{% url 'home'%}"> 
+    <button class="bg-gray-300 font-bold p-4 m-10 a fixed bottom-0 right-0"> Go to Homepage</button>
+</a>
+
+{% endblock %}

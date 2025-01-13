@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+
+{% block content %}
+{% comment %} <h1 class="text-4xl mb-4">Chai aur Django | Homepage</h1> {% endcomment %}
+<style>
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: black; }
+}
+
+.typing-text {
+    overflow: hidden;
+    border-right: .15em solid black;
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+</style>
+
+<h1 class="text-4xl mb-4 typing-text m-8">Vijay Rajage | Python Developer | AI & DS Engineer</h1>
+{% comment %} <h2 class="text-4xl mb-4 typing-text font - bold font - white">This is my first individial Project, Currently in the Development</h2> {% endcomment %}
+<div class="flex items-center justify-center h-screen">
+    <div class="text-center">
+
+        
+        <a href="{% url 'all_chai' %}">
+            <button class="bg-gray-200 align-center m-10 p-4 rounded font-bold">Go to Chai Store</button>
+        </a>
+
+    </div>
+</div>
+
+
+{% endblock %}
