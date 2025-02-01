@@ -1,0 +1,332 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+    Portfolio - Vijay Rajage
+{% endblock %}
+
+{% block content %}
+<style>
+    /* Navbar styling */
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: black;
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+    .navbar a:hover {
+        background-color: #4CAF50;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+    /* General Page Styling */
+    body {
+        font-family: 'Roboto', sans-serif; /* Updated to a modern font */
+        background-color: #1E3A8A;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    /* Header Styling */
+    .header {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        text-align: center;
+        padding: 80px 20px; /* Increased padding */
+        margin-bottom: 50px;
+        animation: fadeIn 2s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-bottom: 2px solid #ff5733; /* Border for header separation */
+    }
+
+    .header img {
+        border-radius: 50%;
+        width: 180px;
+        height: 180px;
+        margin-bottom: 20px;
+        border: 5px solid #fff;
+        object-fit: cover;
+    }
+
+    .header h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #ff5733, #00ff99);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 10px;
+        animation: slideIn 2s ease-out;
+    }
+
+    .header p {
+        font-size: 1.6rem;
+        margin-top: 10px;
+        animation: fadeIn 2s ease-in-out 1s forwards;
+    }
+
+    /* Animations */
+    @keyframes slideIn {
+        from {
+            transform: translateX(-100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Section Styling */
+    .section {
+        padding: 60px 20px;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    .section h2 {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: bold;
+        background: linear-gradient(135deg, #ff5733, #ffbd33);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .contact-info p, .skills-list p {
+        font-size: 1.2rem;
+    }
+
+    .contact-info a {
+        color: #4CAF50;
+        text-decoration: none;
+    }
+
+    .contact-info a:hover {
+        text-decoration: underline;
+    }
+
+    /* Card Styling for Projects and Achievements */
+    .card {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 25px;
+        margin: 20px 0;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-10px); /* Lifting card effect */
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        color: #ff5733;
+    }
+
+    .card p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #e1e1e1;
+    }
+
+    /* Button Hover Effects */
+    .button-hover {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .button-hover:hover {
+        background-color: #45a049;
+        transform: scale(1.05); /* Slight button scale on hover */
+    }
+
+    /* Contact Links Styling */
+    .contact-links a {
+        margin: 0 20px;
+        font-size: 1.3rem;
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .contact-links a:hover {
+        color: #ff5733;
+        text-decoration: underline;
+    }
+
+    .contact-links i {
+        font-size: 1.6rem;
+        margin-right: 8px;
+    }
+
+    /* Bullet Point Styling */
+    ul {
+        list-style-type: disc;
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    /* Smooth Scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Adding Icons for GitHub and LinkedIn */
+    .icon-links {
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .icon-links i {
+        color: white;
+        transition: color 0.3s ease;
+    }
+
+    .icon-links i:hover {
+        color: #ff5733;
+    }
+</style>
+<div class="navbar">
+    <a>THIS IS MY PORTFOLIO</a>
+</div>
+
+<!-- Header Section -->
+<div class="header">
+    <img src="{% static 'images/vijay.png' %}" alt="Vijay Rajage">
+    <h1>Vijay Rajage 👨‍💻</h1>
+    <p>Python Developer | AI & DS Engineer 🤖</p>
+    <p>Email: <a href="mailto:vijayrajage.py@gmail.com">vijayrajage.py@gmail.com</a> | Phone: (+91) 7738858526</p>
+</div>
+
+<!-- Contact Information -->
+<div class="section contact-info">
+    <h2>Contact Information 📩</h2>
+    <div class="flex justify-center gap-10 contact-links">
+        <a href="https://github.com/VJ2151" target="_blank">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/vijay-rajage/" target="_blank">
+            <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+    </div>
+</div>
+
+<!-- Certification Section -->
+<div class="section">
+    <h2>Certification 🎓</h2>
+    <div class="card">
+        <h3>Python Development | SQUAD Infotech Pvt. Ltd.</h3>
+        <p><strong>Duration:</strong> Aug '24 - Jan '25</p>
+        <ul>
+            <li>Gained proficiency in Python programming, including key concepts such as object-oriented programming, file handling, and utilizing Python modules for efficient development.</li>
+            <li>Acquired practical experience in SQL with a focus on database design, querying, and applying CRUD operations to manage and manipulate data.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Skills Section -->
+<div class="section skills-list">
+    <h2>Skills 🛠️</h2>
+    <div class="card">
+        <ul>
+            <li><strong>Programming Language:</strong> Python, Python Libraries (NumPy, Pandas, Matplotlib)</li>
+            <li><strong>Database:</strong> SQL, SQLite3, MongoDB</li>
+            <li><strong>Web Development:</strong> Django, HTML, CSS, Tailwind, Bootstrap</li>
+            <li><strong>Version Control:</strong> Git, GitHub</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Education Section -->
+<div class="section">
+    <h2>Education 🎓</h2>
+    <div class="card">
+        <h3>B. E. in AI & DS | A.C.Patil College of Engineering</h3>
+        <p><strong>CGPA:</strong> 7.06 | Aug '21 - Jul '24</p>
+        <h3>Diploma in Computer Engineering | Vidyalankar Polytechnic</h3> 
+        <p><strong>Percentage:</strong> 81.40% | Aug '19 - Jul '21</p>
+    </div>
+</div>
+
+<!-- Academic Projects Section -->
+<div class="section">
+    <h2>Academic Projects 💻</h2>
+    <div class="card">
+        <h3>INKYTALK - Handwritten Text Recognition with Voice Conversion</h3>
+        <ul>
+            <li>Developed a GUI-based application using Tkinter to allow users to upload images and recognize handwritten text via OpenCV and a custom word recognition model.</li>
+            <li>Integrated PIL for image processing and real-time display of uploaded images.</li>
+            <li>Implemented gTTS (Google Text-to-Speech) to convert the recognized text into voice, enhancing accessibility for users.</li>
+            <li>Designed and optimized a user-friendly interface for seamless interaction with image selection, text recognition, and voice output functionalities.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>YTManager - Video Manager</h3>
+        <ul>
+            <li>Developed a Python application for managing videos, including features to add, update, delete, and view videos using SQLite3 as the database for storing video information.</li>
+            <li>Implemented a simple yet effective CRUD (Create, Read, Update, Delete) functionality to manage video data, enabling users to easily interact with the database.</li>
+            <li>Designed a command-line interface (CLI) for smooth user interaction, providing an intuitive way to manage and update video records within the database.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Achievements Section -->
+<div class="section">
+    <h2>Achievements 🏆</h2>
+    <div class="card">
+        <ul>
+            <li>Research paper presented to an audience of 200+ professionals at the International Conference on Advances in Technology and Management (ICATM-2024).</li>
+            <li>Coordinated a team of 4 members in developing the final year project, overseeing execution and integration of key technologies such as OpenCV, PIL, and gTTS.</li>
+        </ul>
+    </div>
+</div>
+
+<a href="{% url 'home'%}"> 
+    <button class="text-black bg-gray-300 font-bold p-4 m-10 a fixed bottom-0 right-0"> Go to Homepage</button>
+</a>
+
+{% endblock %}

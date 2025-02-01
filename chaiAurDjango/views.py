@@ -10,3 +10,6 @@ def about(request):
 
 def contact(request):
     return HttpResponse("Hello Brother! Welcome to Contact Page.")
+
+def portfolio(request):
+    return render(request, 'Website/portfolio.html')

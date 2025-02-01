@@ -4,32 +4,53 @@
     Chai
 {% endblock %}
 
-
 {% block content %}
-<h1 class="text-white text-4xl font-bold p-9">All Types Of Chai Available!</h1>
 
-<div class='text-white text-center grid grid-cols-3 gap-4 p-4'>
-{% for chai in chais %}
-    <div class = "chai-item bg-blue-800 m-6 p-4 rounded-lg shadow-lg hover:shadow-xl transition 
-    duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
-        <img class="" src="{{chai.image.url}}" alt="{{ chai.name }}">
-        <p>Price: ₹{{ chai.price }}/-only</p>
-        <h3 class="font-bold text-2xl">{{ chai.name|title }}</h3>
-    <a href="{% url 'chai_detail' chai.id %}">
-        <button type="button" 
-            class = "inline-flex items-center px-4 py-2 w-[100%] justify-center bg-blue-500 border border-transparent 
-            rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-600 
-            active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue 
-            disabled:opacity-25 transition ease-in-out duration-150">
-            {{chai.get_type_display}}-Tea
-        </button>
-    </a>
-    </div>
-{% endfor %}
+<!-- Page Header -->
+<h1 class="text-white text-4xl font-extrabold p-9 text-center">
+    ☕ All Types of Chai Available! 🍵
+</h1>
+
+<!-- Chai Cards Grid -->
+<div class='text-white text-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-6'>
+    {% for chai in chais %}
+        <div class="chai-item bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-lg hover:shadow-xl 
+        transition duration-500 ease-in-out transform hover:-translate-y-2">
+            
+            <!-- Chai Image -->
+            <img class="w-full h-48 object-cover rounded-lg shadow-md transform hover:scale-105 transition-all duration-500" 
+            src="{{ chai.image.url }}" alt="{{ chai.name }}">
+            
+            <!-- Chai Details -->
+            <h3 class="font-bold text-2xl text-yellow-400 mt-4">{{ chai.name|title }}</h3>
+            <p class="text-lg text-gray-300 mt-2">Price: <span class="font-bold text-green-300">₹{{ chai.price }}/- only</span></p>
+
+            <!-- View Details Button -->
+            <a href="{% url 'chai_detail' chai.id %}">
+                <button class="mt-4 px-4 py-2 w-full bg-blue-500 text-white font-bold rounded-md 
+                hover:bg-blue-600 hover:scale-105 transition-transform duration-300">
+                    🔍 View Details
+                </button>
+            </a>
+
+            <!-- Order Now Button -->
+            <a href="{% url 'order_chai' chai.id %}">
+                <button class="mt-2 px-4 py-2 w-full bg-green-500 text-white font-bold rounded-md 
+                hover:bg-green-600 hover:scale-105 transition-transform duration-300">
+                    🛒 Order Now
+                </button>
+            </a>
+
+        </div>
+    {% endfor %}
 </div>
 
-<a href="{% url 'home'%}"> 
-    <button class="bg-gray-300 font-bold p-4 m-10 a fixed bottom-0 right-0"> Go to Homepage</button>
+<!-- Back to Homepage Button -->
+<a href="{% url 'home' %}">
+    <button class="bg-gray-300 font-bold p-4 m-10 fixed bottom-0 right-0 rounded-lg shadow-lg 
+    hover:bg-gray-400 transition duration-300">
+        🏠 Go to Homepage
+    </button>
 </a>
 
 {% endblock %}

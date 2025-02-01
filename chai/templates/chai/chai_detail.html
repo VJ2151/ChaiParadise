@@ -6,19 +6,39 @@
 
 {% block content %}
 
-<div class="relative h-screen">
-    <video autoplay muted loop class="absolute w-full h-full object-cover">
+<!-- Full-Page Video Background -->
+<div class="fixed top-0 left-0 w-full h-full -z-10">
+    <video autoplay muted loop class="w-full h-full object-cover">
         <source src="{% static 'videos/background.mp4' %}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <div class="relative z-10 p-9">
-        <h1 class="text-white text-4xl font-bold">Chai Details Page!</h1>
-        <h2 class="text-white uppercase font-bold p-5 m-1">{{ chai.name }}</h2>
-        <h3 class="text-white font-bold p-5 m-1">{{ chai.description }}</h3>
-        <a href="{% url 'all_chai' %}">
-            <button class="bg-gray-200 m-6 p-4 font-bold">BACK</button>
-        </a>
+</div>
+
+<!-- Content Section (Now Scrolls with Background) -->
+<div class="relative z-10 p-10 text-center bg-black bg-opacity-70 w-3/4 mx-auto rounded-lg shadow-lg mt-24">
+    <!-- Chai Name -->
+    <h1 class="text-5xl font-extrabold text-orange-400 drop-shadow-lg">
+        ☕ {{ chai.name }} ☕
+    </h1>
+
+    <!-- Chai Description (More Attractive & Structured) -->
+    <div class="bg-white bg-opacity-20 p-6 rounded-xl shadow-lg mt-5 text-left">
+        <h2 class="text-3xl font-semibold text-yellow-300 underline mb-3">Why You'll Love This Chai:</h2>
+        <ul class="text-lg text-white font-medium list-disc pl-8 space-y-2">
+            <li>{{ chai.description|linebreaks }}</li>
+            <li>Rich aroma that awakens your senses ☕</li>
+            <li>A perfect blend of **spices & warmth** 🌿</li>
+            <li>Pairs beautifully with snacks or a peaceful evening 🍪</li>
+            <li>Crafted with love, just for chai lovers like you! ❤️</li>
+        </ul>
     </div>
+
+    <!-- Back Button -->
+    <a href="{% url 'all_chai' %}">
+        <button class="mt-6 px-6 py-3 text-xl font-bold text-white bg-orange-600 rounded-full shadow-lg hover:bg-orange-500 hover:scale-105 transition-transform duration-300">
+            🔙 Back to Chai Collection
+        </button>
+    </a>
 </div>
 
 {% endblock %}

@@ -21,5 +21,7 @@ from . import views
 urlpatterns = [
     path('', views.all_chai, name='all_chai'),
     path('orders/', views.orders, name='orders'),
-    path('<int:chai_id>/', views.chai_detail, name='chai_detail'),
+    path('chai/<int:chai_id>/', views.chai_detail, name='chai_detail'),
+    path('chai/<int:chai_id>/order/', views.order_chai, name='order_chai'),  # New Order URL
 ]
+
