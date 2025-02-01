@@ -1,0 +1,29 @@
+{
+  "name": "chaiaurdjango",
+  "version": "1.0.0",
+  "description": "(A Django app to manage chai varieties and orders)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VJ2151/ChaiParadise.git"
+  },
+  "keywords": [
+    "(chai",
+    "django",
+    "webapp",
+    "tea",
+    "store)"
+  ],
+  "author": "undefined (Vijay Rajage)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VJ2151/ChaiParadise/issues"
+  },
+  "homepage": "https://github.com/VJ2151/ChaiParadise#readme",
+  "dependencies": {
+    "tailwindcss": "^4.0.3"
+  }
+}
