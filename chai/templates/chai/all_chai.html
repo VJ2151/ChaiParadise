@@ -6,29 +6,33 @@
 
 {% block content %}
 
-<!-- Page Header -->
-<h1 class="text-white text-4xl font-extrabold p-9 text-center">
-    ☕ All Types of Chai Available! 🍵
+<!-- Page Header with Cool Animation -->
+<h1 class="text-white text-4xl font-extrabold p-9 text-center 
+    animate-fade-in tracking-wider relative overflow-hidden">
+    <span class="animated-text">☕ Explore the Best Chai in Town! 🍵</span>
 </h1>
 
 <!-- Chai Cards Grid -->
 <div class='text-white text-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-6'>
     {% for chai in chais %}
-        <div class="chai-item bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-lg hover:shadow-xl 
-        transition duration-500 ease-in-out transform hover:-translate-y-2">
+        <div class="chai-item bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-lg hover:shadow-2xl 
+        transition duration-500 ease-in-out transform hover:-translate-y-3 hover:scale-105 animate-slide-up relative overflow-hidden">
             
+            <!-- Floating Glow Effect -->
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-yellow-300 to-transparent rounded-lg blur-lg opacity-0 hover:opacity-100 transition-all duration-500"></div>
+
             <!-- Chai Image -->
-            <img class="w-full h-48 object-cover rounded-lg shadow-md transform hover:scale-105 transition-all duration-500" 
+            <img class="w-full h-48 object-cover rounded-lg shadow-md transform hover:scale-110 transition-all duration-500 hover:shadow-2xl" 
             src="{{ chai.image.url }}" alt="{{ chai.name }}">
-            
+
             <!-- Chai Details -->
-            <h3 class="font-bold text-2xl text-yellow-400 mt-4">{{ chai.name|title }}</h3>
+            <h3 class="font-bold text-2xl text-yellow-400 mt-4 transition-all duration-300 hover:scale-105">{{ chai.name|title }}</h3>
             <p class="text-lg text-gray-300 mt-2">Price: <span class="font-bold text-green-300">₹{{ chai.price }}/- only</span></p>
 
             <!-- View Details Button -->
             <a href="{% url 'chai_detail' chai.id %}">
                 <button class="mt-4 px-4 py-2 w-full bg-blue-500 text-white font-bold rounded-md 
-                hover:bg-blue-600 hover:scale-105 transition-transform duration-300">
+                hover:bg-blue-600 transform hover:scale-110 hover:rotate-2 transition-transform duration-300 shadow-lg">
                     🔍 View Details
                 </button>
             </a>
@@ -36,7 +40,7 @@
             <!-- Order Now Button -->
             <a href="{% url 'order_chai' chai.id %}">
                 <button class="mt-2 px-4 py-2 w-full bg-green-500 text-white font-bold rounded-md 
-                hover:bg-green-600 hover:scale-105 transition-transform duration-300">
+                hover:bg-green-600 transform hover:scale-110 hover:-rotate-2 transition-transform duration-300 shadow-lg">
                     🛒 Order Now
                 </button>
             </a>
@@ -48,9 +52,60 @@
 <!-- Back to Homepage Button -->
 <a href="{% url 'home' %}">
     <button class="bg-gray-300 font-bold p-4 m-10 fixed bottom-0 right-0 rounded-lg shadow-lg 
-    hover:bg-gray-400 transition duration-300">
+    hover:bg-gray-400 transform hover:scale-110 transition-transform duration-300">
         🏠 Go to Homepage
     </button>
 </a>
+
+<!-- Add Tailwind + Custom CSS -->
+<style>
+    /* Header Text Animation */
+    .animated-text {
+        display: inline-block;
+        animation: fadeInUp 1.5s ease-in-out, glow 2s infinite alternate;
+    }
+
+    /* Letter-by-letter animation */
+    .animated-text span {
+        display: inline-block;
+        animation: bounce 1.5s infinite alternate;
+    }
+
+    /* Glowing effect on hover */
+    .animated-text:hover {
+        text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 30px #ffcc00;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 5px #ffcc00;
+        }
+        to {
+            text-shadow: 0 0 20px #ffcc00, 0 0 30px #ffcc00;
+        }
+    }
+
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+</style>
 
 {% endblock %}

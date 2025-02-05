@@ -6,24 +6,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        {% block title %}
-        Default value
-        {% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        {% block title %} Default Title {% endblock %}
+    </title>
+    
+    <!-- Tailwind CSS -->
     {% tailwind_css %}
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Smooth Page Transition -->
+    <style>
+        body {
+            animation: fadeIn 0.8s ease-in-out;
+            background-color: #0a0a0a; /* Dark theme for contrast */
+            color: white;
+        }
+
+        /* Page Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Glassmorphic Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 12px 20px;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 15px rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        /* Navbar Hover Effect */
+        .navbar nav {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Navbar Glow Effect */
+        .navbar nav:hover {
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff9900;
+        }
+
+        /* Ensuring content does not overlap with fixed navbar */
+        .content-wrapper {
+            padding-top: 80px;
+        }
+    </style>
 </head>
 <body>
-<!-- Navbar -->
-<div class="navbar">
-    <nav class="text-white font-bold">
-    WELCOME TO MY PROJECT!</nav>
-</div>
-    
 
-    {% block content %}
-    
-    {% endblock %}
+    <!-- Navbar -->
+    <div class="navbar">
+        <nav class="text-white">
+            🌟 WELCOME TO <span class="text-yellow-400">MY PROJECT!</span> 🌟
+        </nav>
+    </div>
+
+    <!-- Page Content -->
+    <div class="content-wrapper">
+        {% block content %}
+        {% endblock %}
+    </div>
+
 </body>
 </html>
