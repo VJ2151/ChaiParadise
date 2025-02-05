@@ -1,15 +1,12 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "chaiAurDjango/wsgi.py", 
-      "use": "@vercel/python"
-    }
-  ],
+  "build": {
+    "env": {
+      "DJANGO_SETTINGS_MODULE": "chaiAurDjango.settings"
+    },
+    "cmd": "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+  },
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "chaiAurDjango/wsgi.py"
-    }
+    { "src": "/static/(.*)", "dest": "/static/$1" },
+    { "src": "/(.*)", "dest": "wsgi.py" }
   ]
 }
