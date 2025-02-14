@@ -1,8 +1,4 @@
----
 
-### **README for ChaiParadise** (`README.md`)  
-
-```markdown
 # 🍵 ChaiParadise – Dynamic Tea Shop Website  
 [![Django](https://img.shields.io/badge/Django-3.2-green?style=for-the-badge&logo=django)](https://www.djangoproject.com/)  
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap)](https://getbootstrap.com/)  
@@ -11,7 +7,7 @@
 ### ☕ **An interactive tea shop website where admins can add, update, and manage chai varieties.**  
 > 🍃 **Because every sip of chai deserves a perfect web experience!**  
 
----
+
 
 ## 🌟 Features  
 ✔️ **Admin Dashboard** to manage chai varieties 🛠️  
